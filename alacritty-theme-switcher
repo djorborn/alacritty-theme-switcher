@@ -1,0 +1,25 @@
+#!/bin/bash
+# CONF: Location of alacritty.yml config file.
+CONF=$HOME/.config/alacritty/alacritty.yml
+
+# LINE_NUM: Line number where theme starts
+# For ease of use themes should be placed at the end of your config file.
+LINE_NUM=502
+
+# Most BASE-16 themes are about 41 lines
+# LINE_TO: how many lines need to be deleted
+# With the theme at the bottom you can make this a high number
+LINETO=60
+
+THEME_FILE=$1
+
+elif [[ -f $THEME_FILE ]]; then
+	for ((i = 0; i < $LINETO; i++)); do
+		sed -i "${LINE_NUM}d" $CONF;
+	done
+		cat $THEME_FILE >> $CONF;
+		echo "Done. ${THEME_FILE} is your New Theme!";
+else
+	echo "File |${THEME_FILE}| cannot be found";
+	echo "Nothing Done";
+fi
